@@ -5,8 +5,7 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 const server  = express();
 const Register = require('./Routes/Register')
-const { MongoClient } = require("mongodb")
-const client = new MongoClient(process.env.DATABASE_URL);
+
 
 
 server.use(cors())
@@ -17,9 +16,6 @@ const token = "AAAAAAAAAAAAAAAAAAAAAH%2FpgQEAAAAAOeUVljoK7fFyhzljKOQmKRG9MHU%3De
 
 
 
-server.post('/register', (req,res)=>{
-    Register.register(req,res,client,bcrypt);
-})
 
 server.post('/gettweet', (req,res)=>{
     const id = req.body.id;
