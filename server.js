@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const { Client } = require("twitter-api-sdk");
 const cors = require('cors')
 const bcrypt = require('bcrypt')
 const server  = express();
@@ -7,26 +8,41 @@ const Register = require('./Routes/Register')
 const { MongoClient } = require("mongodb")
 const client = new MongoClient(process.env.DATABASE_URL);
 
-async function main(){
-    try{
-        await client.connect();
-    }
-    catch(e){
-        console.log(e);
-    }
-    finally{
-        await client.close();
-        console.log("DATABASE CONNECTION ESTABLISHED");
-    }
-}
 
-main().catch(console.error)
 server.use(cors())
 server.use(express.json())
+
+const token = "AAAAAAAAAAAAAAAAAAAAAH%2FpgQEAAAAAOeUVljoK7fFyhzljKOQmKRG9MHU%3DehQiyRP2VCiW6UyMOSiw6lDir3lMzrZb6145JdGmuGPHYRP0nv";
+
+
 
 
 server.post('/register', (req,res)=>{
     Register.register(req,res,client,bcrypt);
+})
+
+server.post('/gettweet', (req,res)=>{
+    const id = req.body.id;
+    async function main() {
+        const clients = new Client(token);
+        const response = await clients.tweets.findTweetById(id);
+        // console.log(response)
+        // console.log(JSON.stringify(response, null, 2))
+        return res.json(response);
+    };
+    main()
+})
+
+server.post('/getfollowers', (req,res)=>{
+    const id = req.body.id;
+    async function main() {
+        const client = new Client(token);
+        const response = await client.users.usersIdFollowers(id, {
+          "max_results": 10
+        });
+        return res.json(response)
+      }   
+    main();
 })
 
 server.listen(3001, ()=>{console.log("server is listening")})

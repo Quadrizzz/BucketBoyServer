@@ -1,7 +1,7 @@
 {
-  "name": "kiosk-server",
+  "name": "bucketboy-server",
   "version": "1.0.0",
-  "description": "Server for kiosk e-commerce app",
+  "description": "Server for bucketboy",
   "main": "index.js",
   "scripts": {
     "devStart": "nodemon server.js"
@@ -13,7 +13,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.4.3"
+    "mongoose": "^6.4.3",
+    "twitter-api-sdk": "^1.1.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",
