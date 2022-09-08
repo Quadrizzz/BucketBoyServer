@@ -15,7 +15,18 @@ const token = "AAAAAAAAAAAAAAAAAAAAAH%2FpgQEAAAAAOeUVljoK7fFyhzljKOQmKRG9MHU%3De
 
 
 
-
+server.get('/', (req,res)=>{
+    try{
+        res.json({
+            status:200,
+            message:"Succesful"
+        });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send("Error")
+    }
+})
 
 server.post('/gettweet', (req,res)=>{
     const id = req.body.id;
