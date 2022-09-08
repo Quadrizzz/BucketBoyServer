@@ -5,7 +5,7 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 const server  = express();
 const Register = require('./Routes/Register')
-
+const PORT = process.env.PORT || 3001
 
 
 server.use(cors())
@@ -41,7 +41,7 @@ server.post('/getfollowers', (req,res)=>{
     main();
 })
 
-server.listen(3001, ()=>{console.log("server is listening")})
+server.listen(PORT, ()=>{console.log("server is listening")})
 
 
 
