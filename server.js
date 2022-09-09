@@ -52,7 +52,7 @@ server.post('/getfollowers', (req,res)=>{
     main();
 })
 
-server.listen(PORT, ()=>{console.log("server is listening")})
+server.listen(PORT, ()=>{console.log(PORT)})
 
 
 
