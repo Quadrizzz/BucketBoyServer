@@ -45,7 +45,7 @@ server.post('/getfollowers', (req,res)=>{
     async function main() {
         const client = new Client(token);
         const response = await client.users.usersIdFollowers(id, {
-          "max_results": 10
+          "max_results": 300
         });
         return res.json(response)
       }   
